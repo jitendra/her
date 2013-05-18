@@ -40,7 +40,7 @@ module Her
         run_callbacks callback do
           run_callbacks :save do
             params = { self.singularized_resource_name => to_params }
-            self.class.request(to_params.merge(:_method => method, :_path => request_path)) do |parsed_data, response|
+            self.class.request(params.merge(:_method => method, :_path => request_path)) do |parsed_data, response|
               assign_attributes(self.class.parse(parsed_data[:data])) if parsed_data[:data]
               @metadata = parsed_data[:metadata]
               @response_errors = parsed_data[:errors]
